@@ -4,15 +4,13 @@
     <title>XHR</title>
   </head>
   <body>
-    <button id="syncBtn">同步</button>
-    <button id="asyncBtn">非同步</button>
+    <button id="asyncBtn">非同步(promise)</button>
     <button id="countBtn">計數器</button>
     <div id="count">0</div>
     <div id="message">XXXXX</div>
   </body>
   <script>
     var message = document.getElementById("message");
-    var syncBtn = document.getElementById("syncBtn");
     var asyncBtn = document.getElementById("asyncBtn");
     var countBtn = document.getElementById("countBtn");
     var count = document.getElementById("count");
@@ -20,30 +18,30 @@
     countBtn.addEventListener("click", function () {
       count.innerText = parseInt(count.innerText, 10) + 1;
     });
-    
-    asyncBtn.addEventListener("click", function(){
+
+    function xhrPromise() {
+      return new Promise((resolve, reject) => {
         var xhr = new XMLHttpRequest();
-        //open 只是設定
         xhr.open("GET", "http://34.217.120.25:3000", true);
-        //onload callback
-        xhr.onload = function(){
-          if(this.status === 200){
-            message.innerText, `非同步請求 ${this.responseText}`;
-          }else{
-            message.innerText, `非同步請求 有問題 ${this.status}`;
+        xhr.onload = function () {
+          if (this.status === 200) {
+            resolve = `非同步請求 load ${this.responseText}`;
+          } else {
+            reject = `非同步請求 有問題 ${this.status}`;
           }
         };
-        //send 才是真正送出的動作(發送請求)
         xhr.send();
-    });
+      });
+    }
 
-    syncBtn.addEventListener("click", function(){
-        var xhr = new XMLHttpRequest();
-        xhr.open("GET", "http://34.217.120.25:3000", false);
-        xhr.onload = function(){
-            message.innerText, `同步請求 ${this.responseText}`;
-        };
-        xhr.send();
+    asyncBtn.addEventListener("click", function () {
+      xhrPromise()
+        .then((result) => {
+          message.innerText = `非同步請求 load ${resolve}`;
+        })
+        .catch((error) => {
+          message.innerText = `非同步請求 有問題 ${reject}`;
+        });
     });
   </script>
 </html>
