@@ -1,4 +1,5 @@
 let doWork = function (job, timer, cb) {
+    //(a, b, c) => { console.log(a+b+c)} 為一個function
     setTimeout(() => {
       let dt = new Date();
       cb(null, `完成工作: ${job} at ${dt.toISOString()}`);
@@ -14,22 +15,19 @@ let doWork = function (job, timer, cb) {
     }
     console.log(result);
     doWork("吃早餐", 3000, function (err, result) {
-    if (err) {
-    console.error(err);
-    return;
-    }
-    console.log(result);
-        doWork("寫功課", 5000, function (err, result) {
-                if (err) {
-                console.error(err);
-                return;
-                }
-                console.log(result);
-            });
-
+      if (err) {
+        console.error(err);
+        return;
+      }
+      console.log(result);
+      doWork("寫功課", 5000, function (err, result) {
+        if (err) {
+        console.error(err);
+        return;
+        }
+        console.log(result);
+      });
     });
-    
-
   });
 
   
