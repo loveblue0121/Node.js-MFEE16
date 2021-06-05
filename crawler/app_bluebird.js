@@ -22,9 +22,18 @@ function fsPromise(){
   });
 }
 */
+// 方法1: 一個函式一個函式包
 //用bluebird 包 callback版本的readFile
 const readFileBlue = Promise.promisify(fs.readFile);
 
+/*方法2: 整個 fs 都包起來
+把 fs 所有的 function 都包成 promise
+但是原本的函式名稱後面會被加上 Async
+
+const fsBlue = Promise.promisifyAll(fs);
+fsBlue
+  .readFileAsync("stock.txt", "utf-8")
+*/
 readFileBlue("stock.txt","utf8")
     .then((data)=>{
         console.log(`讀到的: ${data}`);
