@@ -1,3 +1,5 @@
+const connection = require ("./utils/db")
+
 //導入express這個package
 const express = require("express");
 //利用express建立一個express application app
@@ -26,12 +28,26 @@ app.set("view engine", "pug");
 app.get("/",function(req, res){
     res.render("index");
 });
+
+
+
 app.get("/test",function(req, res){
     res.send("TESTTTTTT");
 });
+//查詢資料庫
+app.get("/stock", async (req, res) =>{
+    let stock_list = await connection.queryAsync("SELECT * FROM stock;");
+    res.render("stock/list", {
+        stocks: stock_list,
+    });
+    
+})
+
+
 app.get("/about",function(req, res){
     res.render("about");
 });
-app.listen(3000, () =>{
-    console.log(`悄悄的我又來了~~~~ 在port3000`);
+app.listen(3000, async () =>{
+    await connection.connectAsync();
+    console.log(`悄悄的我又來了~~~~`);
 })

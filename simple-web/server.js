@@ -10,8 +10,10 @@ const fs = require("fs/promises");
 const server = http.createServer((req, res) => {
     console.log("連線");
     console.log(req.url);
-
+    // 將 url 一般化，移除他的 query string、非必要的結尾斜線，並且一率小寫
+    
     const path = req.url.replace(/\/?(?:\?.*)?$/,"").toLocaleLowerCase(); //移除非必要的結尾斜線，並轉小寫
+
     //replace()- 指定搜尋值並已指定字元取代
     console.log(`path:${path}`);
     //about範例執行結果path:/about
@@ -39,6 +41,9 @@ const server = http.createServer((req, res) => {
         case "/about":
             let name = url.searchParams.get("name") || "路人甲"; // || = 預設值
             //如果有搜尋到解析的網址上有name=，就顯示在文字上
+            //nodejs有內建response物件，request物件
+            //express的res, req是去擴充nodejs內建的這兩個
+            //express res.send() -> setHeader
             res.end(`Hi, ${name} 這是關於我們`);
             break;    
         default:

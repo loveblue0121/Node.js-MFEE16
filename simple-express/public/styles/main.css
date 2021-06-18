@@ -1,0 +1,12 @@
+body {
+  background: lightgoldenrodyellow;
+}
+th {
+  width: 130px;
+  background: lightskyblue;
+}
+td {
+  width: 130px;
+  background: #fff;
+  text-align: center;
+}
