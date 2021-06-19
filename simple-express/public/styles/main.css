@@ -1,5 +1,10 @@
 body {
   background: lightgoldenrodyellow;
+  margin: 0;
+  padding: 0;
+}
+table {
+  border-collapse: collapse;
 }
 th {
   width: 130px;
@@ -9,4 +14,25 @@ td {
   width: 130px;
   background: #fff;
   text-align: center;
+}
+.pagination {
+  display: inline-block;
+}
+
+.pagination a {
+  color: black;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+}
+
+.pagination a.active {
+  background-color: #3678f1;
+  color: white;
+  border-radius: 5px;
+}
+
+.pagination a:hover:not(.active) {
+  background-color: #ddd;
+  border-radius: 5px;
 }
