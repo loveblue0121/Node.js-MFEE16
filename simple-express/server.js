@@ -29,8 +29,6 @@ app.get("/",function(req, res){
     res.render("index");
 });
 
-
-
 app.get("/test",function(req, res){
     res.send("TESTTTTTT");
 });
@@ -43,7 +41,14 @@ app.get("/stock", async (req, res) =>{
     
 })
 
-
+//在路由上名稱前有: 為變數
+app.get("/stock/:stockCode", async (req, res) => {
+    //req.params.stockCode 這個方法就可以拿到stock的變數
+    let stock_list = await connection.queryAsync("SELECT * FROM stock_price WHERE stock_id = ? ORDER BY date;", req.params.stockCode);
+    res.render("stock/detail", {
+        stockPrices: stock_list,
+    })
+})
 app.get("/about",function(req, res){
     res.render("about");
 });
