@@ -40,8 +40,9 @@ td {
 .form {
   width: 40%;
   border-radius: 5px;
-  background-color: #f2f2f2;
+  background: #fff;
   padding: 20px;
+  margin: 0 auto;
 }
 
 input[type="text"],
@@ -61,7 +62,7 @@ select {
 input[type="submit"],
 button {
   width: 100%;
-  background-color: lightblue;
+  background-color: lightskyblue;
   color: white;
   padding: 14px 20px;
   margin: 8px 0;
@@ -72,7 +73,7 @@ button {
 
 input[type="submit"]:hover,
 button:hover {
-  background-color: #ffffff;
+  background-color: lightblue;
 }
 
 /* navigation */
@@ -81,7 +82,7 @@ ul {
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background-color: #4caf50;
+  background-color: #123456;
   top: 0;
   width: 100%;
 }
@@ -99,5 +100,5 @@ li a {
 }
 
 li a:hover {
-  background-color: #45a049;
+  background-color: lightgray;
 }
