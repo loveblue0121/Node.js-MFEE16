@@ -10,6 +10,8 @@ req->router
 req->middleware.....->router
 */
 //app.use設定中間件
+app.use(express.urlencoded({ extended: false })); //加上這個中間件，就可以解讀POST過來的資料
+
 app.use(function(req, res, next){
     let current = new Date();
     console.log(`有人來訪問了 在${current}`);
@@ -60,7 +62,7 @@ app.use(function (req, res, next){
 });
 // 500 error 放在所有路由的後面
 app.use(function(err, req, res, next){
-    console.log(err.message);
+    console.log("ERROR:", err.message);
     res.status(500);
     res.send("500 - 沒救了");
 })
