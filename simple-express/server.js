@@ -18,6 +18,11 @@ app.use(function(req, res, next){
 });
 //可指定一個或多個目錄是「靜態資源目錄」
 //自動幫你為public裡面的檔案建立路由
+/*ex. /javascript/api.js
+      
+
+
+*/
 app.use(express.static("public")); //必須建立在所有中間件上面
 //第一個是變數，第二個是檔案夾名稱
 app.set("views", "views");
@@ -33,6 +38,8 @@ app.use("/stock", stockRouter);
 let apiRouter = require("./routes/api");
 app.use("/api", apiRouter);
 
+let authRouter = require("./routes/auth"); //路徑
+app.use("/auth", authRouter); //名稱
 //路由router  (request, response){} 去回應這個請求
 //由上而下找，找到就停住了，不會在往下一個同樣的執行
 app.get("/",function(req, res){

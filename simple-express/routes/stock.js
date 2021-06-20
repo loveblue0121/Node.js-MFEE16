@@ -16,7 +16,10 @@ router.get("/", async (req, res) =>{
 router.get("/:stockCode", async (req, res, next) => {
     let stock = await connection.queryAsync("SELECT * FROM stock WHERE stock_id=?;",req.params.stockCode);
     if(stock.length ===0){
-        next();
+       return next();
+       //如果不加上return，當next()執行完後，會回來處理 繼續下面的程式碼
+       //next裡只要有放參數，就會跳到express預設處理錯誤處理函式
+       //預設處理錯誤中間函式，有四個參數的那個中間函式 ->500 error
     }
 
     stock = stock[0];
